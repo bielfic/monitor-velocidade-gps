@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor de Velocidade com GPS</title>
+</head>
+<body>
+  <h1>Monitor de Velocidade</h1>
+  <p id="status">Obtendo localização...</p>
+  <p id="velocidade">Velocidade: 0 km/h</p>
+
+  <script>
+    // Verifica se o navegador suporta a Geolocation API
+    if ("geolocation" in navigator) {
+      navigator.geolocation.watchPosition(
+        (position) => {
+          // Obtém a velocidade em m/s do GPS
+          const velocidadeEmMetrosPorSegundo = position.coords.speed;
+
+          // Converte para km/h (se a velocidade for válida)
+          const velocidadeEmKmPorHora = velocidadeEmMetrosPorSegundo !== null
+            ? (velocidadeEmMetrosPorSegundo * 3.6).toFixed(2)
+            : 0;
+
+          // Atualiza a interface
+          document.getElementById("status").textContent = "Localização obtida!";
+          document.getElementById("velocidade").textContent = `Velocidade: ${velocidadeEmKmPorHora} km/h`;
+
+          // Verifica se a velocidade ultrapassa o limite
+          if (velocidadeEmKmPorHora > 40) {
+            alert("⚠️ Você está acima do limite de velocidade!");
+          }
+        },
+        (error) => {
+          document.getElementById("status").textContent = "Erro ao obter localização.";
+          console.error(error);
+        },
+        {
+          enableHighAccuracy: true, // Usa GPS de alta precisão
+          maximumAge: 0, // Não usa cache
+          timeout: 5000, // Tempo limite para obter a localização
+        }
+      );
+    } else {
+      document.getElementById("status").textContent = "Geolocalização não suportada neste dispositivo.";
+    }
+  </script>
+</body>
+</html>
