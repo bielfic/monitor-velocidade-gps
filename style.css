@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+#status {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 20px 0;
+}
+
+#velocidade {
+  font-size: 1.5em;
+  text-align: center;
+  color: #007BFF;
+}
