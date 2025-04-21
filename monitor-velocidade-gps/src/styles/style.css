@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+#map {
+  width: 100%;
+  height: 300px; /* Define a altura do mapa */
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+#overlay {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+#overlay h1 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#overlay p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+#overlay button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+#status {
+  font-weight: bold;
+  color: #ffeb3b;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#velocidade {
+  font-size: 1.5rem;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+#alerta {
+  font-size: 1.2rem;
+  color: #f44336;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#dispositivo {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+#sugestoes {
+  border: 1px solid #ffffff;
+  padding: 15px;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  max-width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+#sugestoes h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+#sugestoes ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+#sugestoes li {
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  #velocidade {
+    font-size: 1.2rem;
+  }
+
+  #sugestoes h3 {
+    font-size: 1.2rem;
+  }
+
+  #sugestoes li {
+    font-size: 0.9rem;
+  }
+}

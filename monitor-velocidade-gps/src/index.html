@@ -7,10 +7,29 @@
   <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-  <h1>Monitor de Velocidade</h1>
-  <p id="status">Obtendo localização...</p>
-  <p id="velocidade">Velocidade: 0 km/h</p>
-
+  <div id="overlay">
+    <h1>Monitor de Velocidade</h1>
+    <p id="status">Obtendo localização...</p>
+    <p id="velocidade">Velocidade: 0 km/h</p>
+    <p id="alerta"></p>
+    <p id="dispositivo"></p>
+    <div>
+      <label for="limite">Definir limite de velocidade (km/h):</label>
+      <input type="number" id="limite" placeholder="Ex: 50">
+      <button id="definirLimite">Definir</button>
+      <button id="resetarLimite">Resetar para padrão</button>
+    </div>
+    <div id="sugestoes">
+      <h3>Sugestões para resolver problemas de localização:</h3>
+      <ul>
+        <li>Certifique-se de que o GPS está ativado no dispositivo.</li>
+        <li>Verifique se o navegador tem permissão para acessar a localização.</li>
+        <li>Tente usar o aplicativo em um local aberto com boa visibilidade para o céu.</li>
+        <li>Se estiver usando o Brave, verifique as configurações de privacidade e habilite a geolocalização.</li>
+        <li>Atualize o navegador para a versão mais recente.</li>
+      </ul>
+    </div>
+  </div>
   <script src="scripts/app.js"></script>
 </body>
 </html>
