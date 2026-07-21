@@ -75,16 +75,20 @@ function exibirMensagemErro(error) {
     const statusElement = document.getElementById("status");
     switch (error.code) {
         case error.PERMISSION_DENIED:
-            statusElement.textContent = "Permissão negada para acessar a localização.";
+            if (!window.isSecureContext && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+                statusElement.textContent = "Permissão negada. O Safari/iOS exige HTTPS (conexão segura) para liberar o GPS.";
+            } else {
+                statusElement.textContent = "Permissão negada para acessar a localização. Verifique as configurações do iOS/Safari.";
+            }
             break;
         case error.POSITION_UNAVAILABLE:
-            statusElement.textContent = "Localização indisponível.";
+            statusElement.textContent = "Localização indisponível. Verifique se o GPS do celular está ligado.";
             break;
         case error.TIMEOUT:
-            statusElement.textContent = "Tempo de solicitação esgotado. Tente novamente em uma área com melhor sinal.";
+            statusElement.textContent = "Tempo de solicitação esgotado. Tente novamente em um local aberto.";
             break;
         default:
-            statusElement.textContent = "Erro desconhecido ao obter localização.";
+            statusElement.textContent = "Erro ao obter localização.";
     }
     exibirSugestoes(); // Exibe a caixa de sugestões em caso de erro
 }
@@ -101,13 +105,19 @@ function verificarDispositivo() {
 }
 
 function verificarPermissaoGeolocalizacao() {
-    // Verifica se a permissão de geolocalização foi negada
-    if (navigator.permissions) {
-        navigator.permissions.query({ name: "geolocation" }).then((result) => {
-            if (result.state === "denied") {
-                document.getElementById("status").textContent = "Permissão de geolocalização negada. Verifique as configurações do navegador.";
-            }
-        });
+    // Safari no iOS lança exceção em navigator.permissions.query({ name: "geolocation" })
+    if (navigator.permissions && typeof navigator.permissions.query === "function") {
+        try {
+            navigator.permissions.query({ name: "geolocation" }).then((result) => {
+                if (result && result.state === "denied") {
+                    document.getElementById("status").textContent = "Permissão de geolocalização negada. Verifique as configurações do navegador.";
+                }
+            }).catch(() => {
+                // Safari iOS ignora esta consulta por padrão, tratado em watchPosition
+            });
+        } catch (e) {
+            // Trata erro síncrono no Safari iOS
+        }
     }
 }
 
